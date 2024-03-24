@@ -1,19 +1,24 @@
 import sql_scripts as sc
+import sqlite3
 from class_dish import Dish
 from class_user import User
-from connector import cursor
+
+connection = sqlite3.connect("first_version.db")
+cursor = connection.cursor()
 
 
 def getuser(id):
     cursor.execute(sc.users_sql_scripts_making_object, (id,))
-    result = cursor.fetchall()
+    result0 = cursor.fetchall()
+    result = result0[0]
     user = User(result[0], result[1], result[2], result[3], result[4])
     return user
 
 
 def getdish(id):
     cursor.execute(sc.dishes_sql_scripts_making_object, (id,))
-    result = cursor.fetchall()
+    result0 = cursor.fetchall()
+    result = result0[0]
     dish = Dish(result[0], result[1], result[2], result[3], result[4], result[5])
     return dish
 
@@ -33,3 +38,11 @@ def sql_update_user(user):
 def sql_update_dish(dish):
     cursor.execute(sc.dishes_sql_scripts_update_object,
                    (dish.name, dish.calories, dish.proteins, dish.fats, dish.carbos, dish.id))
+
+def dishes_dict():
+    cursor.execute(sc.dishes_sql_scripts_dishes_dict)
+    result0 = cursor.fetchall()
+    dishes_dict = dict()
+    for i in range(len(result0)):
+        dishes_dict[result0[i][0]] = i+1
+    return dishes_dict
