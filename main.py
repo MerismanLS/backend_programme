@@ -16,9 +16,9 @@ if __name__ == "__main__":
     # cursor.execute(sc.dishes_sql_scripts_insert, ("Пельмени",))
     # cursor.execute(sc.dishes_sql_scripts_insert, ("Окрошка",))
 
-    # print(scripts.getuser(1).love_dish_id)
+    print(scripts.getuser(connection, 1).love_dish_id)
 
-    # print(scripts.dishes_dict())
+    print(scripts.dishes_dict(connection))
 
 connection.commit()
 connection.close()
