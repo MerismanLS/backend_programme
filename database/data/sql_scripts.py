@@ -22,35 +22,35 @@ dishes_sql_scripts_creating = """
 # последние четыре поля могут быть пустыми,
 # их пользователь по желанию заполнит
 
-users_sql_scripts_insert = """
-    INSERT INTO Users (name, surname, age) VALUES (?,?,?)
+dishes_sql_script_insert = """
+    INSERT INTO Dishes (name, calories, proteins, fats, carbos) VALUES (?, ?, ?, ?, ?)
 """
 
-dishes_sql_scripts_insert = """
-    INSERT INTO Dishes (name) VALUES (?)
+dishes_sql_script_select_all = """
+    SELECT * FROM Dishes
 """
 
-users_sql_scripts_making_object = """
-    SELECT * FROM Users WHERE id = ?
+dishes_sql_script_delete_all = """
+    DELETE FROM Dishes
 """
 
-dishes_sql_scripts_making_object = """
-    SELECT * FROM Dishes WHERE id = ?
+dishes_sql_script_delete_by_id = """
+    DELETE FROM Dishes WHERE id = ? 
 """
 
-users_sql_scripts_update_object = """
-    UPDATE Users SET name = ?, surname = ?, age = ?, love_dish_id = ? WHERE id = ?
+
+users_sql_script_insert = """
+    INSERT INTO Users (name, surname, age, love_dish_id) VALUES (?, ?, ?, ?)
 """
 
-dishes_sql_scripts_update_object = """
-    UPDATE Dishes SET name = ?, calories = ?, proteins = ?,
-           fats = ?, carbos = ? WHERE id = ?
-"""
-
-dishes_sql_scripts_dishes_dict = """
-    SELECT (name) FROM Dishes
-"""
-
-users_sql_scripts_getting_everything = """
+users_sql_script_select_all = """
     SELECT * FROM Users
+"""
+
+users_sql_script_delete_all = """
+    DELETE FROM Users
+"""
+
+users_sql_script_delete_by_id = """
+    DELETE FROM Users WHERE id = ? 
 """
