@@ -1,29 +1,29 @@
 import sql_scripts
 import sqlite3
-from database.data.models.Dish import Dish
+from database.data.models.User import User
 
 
-def get_all(connection: sqlite3.Connection) -> list[Dish]:
+def get_all(connection: sqlite3.Connection) -> list[User]:
     try:
         cursor = connection.cursor()
-        cursor.execute(sql_scripts.dishes_sql_script_select_all)
+        cursor.execute(sql_scripts.users_sql_script_select_all)
         value: list[tuple] = cursor.fetchall()
-        dishes: list[Dish] = []
+        users: list[User] = []
 
         for data in value:
-            dish = Dish.of(data)
-            dishes.append(dish)
+            user = User.of(data)
+            users.append(user)
 
-        return dishes
+        return users
     except Exception as e:
         print(e)
         return []
 
 
-def insert(connection: sqlite3.Connection, dish: Dish) -> bool:
+def insert(connection: sqlite3.Connection, user: User) -> bool:
     try:
         cursor = connection.cursor()
-        cursor.execute(sql_scripts.dishes_sql_script_insert, dish.to_data())
+        cursor.execute(sql_scripts.users_sql_script_insert, user.to_data())
         connection.commit()
         return True
     except Exception as e:
@@ -34,7 +34,7 @@ def insert(connection: sqlite3.Connection, dish: Dish) -> bool:
 def delete_all(connection: sqlite3.Connection) -> bool:
     try:
         cursor = connection.cursor()
-        cursor.execute(sql_scripts.dishes_sql_script_delete_all)
+        cursor.execute(sql_scripts.users_sql_script_delete_all)
         connection.commit()
         return True
     except Exception as e:
@@ -42,10 +42,10 @@ def delete_all(connection: sqlite3.Connection) -> bool:
         return False
 
 
-def delete_by_id(connection: sqlite3.Connection, dish_id: int) -> bool:
+def delete_by_id(connection: sqlite3.Connection, user_id: int) -> bool:
     try:
         cursor = connection.cursor()
-        cursor.execute(sql_scripts.dishes_sql_script_delete_by_id, (dish_id,))
+        cursor.execute(sql_scripts.users_sql_script_delete_by_id, (user_id,))
         connection.commit()
         return True
     except Exception as e:
