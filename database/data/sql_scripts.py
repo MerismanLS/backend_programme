@@ -16,14 +16,13 @@ dishes_sql_scripts_creating = """
     calories INTEGER,
     proteins INTEGER,
     fats INTEGER,
-    carbohydrates INTEGER 
+    carbos INTEGER 
+    comments TEXT
     )
 """
-# последние четыре поля могут быть пустыми,
-# их пользователь по желанию заполнит
 
 dishes_sql_script_insert = """
-    INSERT INTO Dishes (name, calories, proteins, fats, carbos) VALUES (?, ?, ?, ?, ?)
+    INSERT INTO Dishes (name, calories, proteins, fats, carbos, comments) VALUES (?, ?, ?, ?, ?, ?)
 """
 
 dishes_sql_script_select_all = """
