@@ -51,3 +51,40 @@ def delete_by_id(connection: sqlite3.Connection, user_id: int) -> bool:
     except Exception as e:
         print(e)
         return False
+
+
+def getting_all_logins(connection: sqlite3.Connection):
+    cursor = connection.cursor()
+    cursor.execute(sql_scripts.users_sql_script_select_login)
+    value: list[tuple] = cursor.fetchall()
+    logins = []
+
+    for data in value:
+        logins.append(data)
+
+    return logins
+
+
+def checking_login(connection: sqlite3.Connection, login: str) -> bool:
+    cursor = connection.cursor()
+    cursor.execute(sql_scripts.users_sql_script_select_login)
+    value: list[tuple] = cursor.fetchall()
+    logins = []
+
+    for data in value:
+        logins.append(data)
+
+    if login in logins:
+        return True
+    else:
+        return False
+
+
+def checking_password(connection: sqlite3.Connection, login: str, password: str) -> bool:
+    cursor = connection.cursor()
+    cursor.execute(sql_scripts.users_sql_script_find_password, login)
+    value = cursor.fetchall()
+    if value[0] == password:
+        return True
+    else:
+        return False

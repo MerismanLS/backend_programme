@@ -5,6 +5,9 @@ users_sql_scripts_creating = """
     surname TEXT NOT NULL,
     age INTEGER NOT NULL,
     love_dish_id INTEGER,
+    comments TEXT, 
+    login TEXT NOT NULL,
+    password TEXT NOT NULL
     FOREIGN KEY (love_dish_id) REFERENCES Dishes (id)
     )
 """
@@ -37,13 +40,20 @@ dishes_sql_script_delete_by_id = """
     DELETE FROM Dishes WHERE id = ? 
 """
 
-
 users_sql_script_insert = """
-    INSERT INTO Users (name, surname, age, love_dish_id) VALUES (?, ?, ?, ?)
+    INSERT INTO Users (name, surname, age, love_dish_id, comments, login, password) VALUES (?, ?, ?, ?, ?, ?, ?)
 """
 
 users_sql_script_select_all = """
     SELECT * FROM Users
+"""
+
+users_sql_script_select_login = """
+    SELECT login FROM Users
+"""
+
+users_sql_script_find_password = """
+    SELECT password FROM Users WHERE login = ?
 """
 
 users_sql_script_delete_all = """

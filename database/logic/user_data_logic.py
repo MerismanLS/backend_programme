@@ -17,7 +17,7 @@ class UserDataLogic:
 
     @staticmethod
     def insert(connection, user: User) -> bool:
-        if user.age < 0:
+        if user.age < 0 and user.login in dbu.getting_all_logins(connection):
             return False
 
         if user is None:
